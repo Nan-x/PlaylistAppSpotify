@@ -1,4 +1,47 @@
 {
   "playlistCollection": [
+    {
+      "id" : "01",
+      "title": "Top 5",
+      "duration": 35,
+      "songs": [
+        {
+"songId" : "14",
+"name": "Promises",
+"artist": "Calvin Harris",
+"genre": "Dance",
+"duration": 45
+},
+{
+"songId" : "15",
+"name": "Happier",
+"artist": "MArshmello & Bastile",
+"genre": "Pop",
+"duration": 11
+},
+{
+"songId" : "16",
+"name": "I Love It",
+"artist": "Lil Pump and Kanye West",
+"genre": "HipHop",
+"duration": 11
+},
+    {
+      "songId" : "19",
+      "name": "I Love It",
+      "artist": "Lil Pump and Kanye West",
+      "genre": "HipHop",
+      "duration": 11
+    },
+{
+"songId" : "17",
+"name": "Let You Love Me",
+"artist": "Rita ORa",
+"genre": "Pop",
+"duration": 11
+}
+  
+      ]
+    }
   ]
 }

@@ -3,27 +3,32 @@
     <tr>
       <th>Song</th>
       <th>Artist</th>
-      <th>Duration</th>
-      <th></th>
+      <th>View Song</th>
+      <th> Delete Song</th>
     </tr>
   </thead>
   <tbody>
     {{#each playlist.songs}}
       <tr>
         <td>
-          {{title}}
+          {{name}}
         </td>
         <td>
           {{artist}}
         </td>
-        <td>
-          {{duration}}
+        
+                   <td>
+          <a href="https://api.spotify.com/v1/tracks/{id}" class="ui icon button">
+         <i class="music icon"></i>
+          </a>
         </td>
+        
         <td>
           <a href="/playlist/{{../playlist.id}}/deletesong/{{id}}" class="ui icon button">
             <i class="icon trash"></i>
           </a>
         </td>
+
       </tr>
     {{/each}}
   </tbody>

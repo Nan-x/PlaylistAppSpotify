@@ -5,6 +5,7 @@ const logger = require('./utils/logger');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
+const playlist = require('./controllers/playlist.js');
 
 const app = express();
 app.use(cookieParser());
@@ -69,6 +70,20 @@ app.get("/search", function (request, response) {
   }, function(err) {
     console.log(err)
   });
+});
+
+app.get('/search-track', function (request, response) {
+  
+  // Search for a track!
+  spotifyApi.searchTracks('track: dancing queen', {limit: 1})
+    .then(function(data) {
+    
+      // Send the first (only) track object
+      response.send(data.body.tracks.items[0]);
+    
+    }, function(err) {
+      console.error(err);
+    });
 });
 
 
