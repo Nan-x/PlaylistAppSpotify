@@ -1,0 +1,35 @@
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>Song</th>
+      <th>Artist</th>
+      <th>View Song</th>
+      <th> Delete Song</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each playlist.songs}}
+      <tr>
+        <td>
+          {{name}}
+        </td>
+        <td>
+          {{artist}}
+        </td>
+        
+                   <td>
+          <a href="https://api.spotify.com/v1/tracks/{id}" class="ui icon button">
+         <i class="music icon"></i>
+          </a>
+        </td>
+        
+        <td>
+          <a href="/playlist/{{../playlist.id}}/deletesong/{{id}}" class="ui icon button">
+            <i class="icon trash"></i>
+          </a>
+        </td>
+
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
