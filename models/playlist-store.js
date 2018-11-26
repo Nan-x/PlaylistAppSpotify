@@ -50,14 +50,12 @@ const playlistStore = {
     return this.store.findOneBy(this.collection.songs, { id : id, songId : songId } );
   },
   
-  getSongName(id, songId){
-   const playlist = this.getPlaylist(id);
-    return this.store.findOneBy(this.collection.songs.name, { id : id, songId : songId } );
-}
-  
+    getSongName(id, songId) {
+    const playlist = this.getPlaylist(id);
+    const song = this.store.findOneBy(this.collection.songs, { id : id, songId : songId });
+    return song.name;
+    }
 };
-
-
-
+  
 
 module.exports = playlistStore;

@@ -19,7 +19,4 @@ router.post('/playlist/:id/addsong', playlist.addSong);
 
 router.get('/viewsongs/:id/viewSong/:songid', playlist.viewSong);
 
-router.get('https://api.spotify.com/v1/tracks/{id}');
-
-
 module.exports = router;

@@ -1,18 +1,15 @@
-const getsong = require('./models/playlist-store');
+const playlist = require('./controllers/playlist.js');
 
-$(function() {  
- 
+
+$(function myFunction() {  
     
-    let query = getsong.getSongName();
+    let query = playlist.getSongName();
+
     
     $.get('/search?' + $.param({query: query}), function(data) {
-      $('input[type="text"]').val('');
-      $('input').focus();
-      
       document.getElementById('results').innerHTML = data.tracks.items.map(track => {
-        return `<a ${track.id.spotify}">${track.id}  </a>`;
+        return `<li><a href="${track.external_urls.spotify}">${track.name}   |   ${track.artists[0].name}</a></li>`;
       }).join('\n');
-
   });
   
       
@@ -23,7 +20,7 @@ $(function() {
     console.groupEnd();
     
     // Display the track name
-    var trackName = $('<h3><a href="' + data.id.spotify + '">' + data.name + '</a></h3>');
+    var trackName = $('<h3><a href="' + data.external_urls.spotify + '">' + data.name + '</a></h3>');
     var artistName = $('<h3>' + data.artists[0].name + '</h3>');
     trackName.appendTo('#search-track-container');
     artistName.appendTo('#search-track-container');
