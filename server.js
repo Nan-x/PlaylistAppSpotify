@@ -7,6 +7,8 @@ const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const playlist = require('./controllers/playlist.js');
 
+const getsong = require('./models/playlist-store');
+
 const app = express();
 app.use(cookieParser());
 const exphbs = require('express-handlebars');
@@ -56,14 +58,6 @@ spotifyApi.clientCredentialsGrant()
 app.get("/search", function (request, response) {
   let query = request.query.query;
   
-  if(request.query.context) {
-    if(request.query.context == 'artist') {
-      query = 'artist:' + request.query.query;
-    }
-    if(request.query.context == 'track') {
-      query = 'track:' + request.query.query;
-    }
-  }
   spotifyApi.searchTracks(query)
   .then(function(data) {
     response.send(data.body);
@@ -72,10 +66,19 @@ app.get("/search", function (request, response) {
   });
 });
 
+
+
 app.get('/search-track', function (request, response) {
   
-  // Search for a track!
-  spotifyApi.searchTracks('track: dancing queen', {limit: 1})
+  
+  
+  // Search for a track!   //My method to try and retrive song names
+  //Need to pull names from Json and concatinate them to tracks request.
+  //needs to itterate through song names searching and displaying each one
+  
+  
+  
+  spotifyApi.searchTracks('track : ' , {limit: 1})
     .then(function(data) {
     
       // Send the first (only) track object

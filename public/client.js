@@ -1,16 +1,12 @@
+const playlist = require('./controllers/playlist.js');
 
-const playlist = require('../models/playlist-store');
 
-$(function() {  
-  $
+$(function myFunction() {  
     
-    let query = $('playlist.song.name').val();
-   
+    let query = playlist.getSongName();
+
     
     $.get('/search?' + $.param({query: query}), function(data) {
-      $('input[type="text"]').val('');
-      $('input').focus();
-      
       document.getElementById('results').innerHTML = data.tracks.items.map(track => {
         return `<li><a href="${track.external_urls.spotify}">${track.name}   |   ${track.artists[0].name}</a></li>`;
       }).join('\n');
