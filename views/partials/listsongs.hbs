@@ -1,5 +1,3 @@
-
-
 <table class="ui table">
   <thead>
     <tr>
@@ -20,39 +18,16 @@
         </td>
         
                    <td>
-                     
-                     
-                     
-
-<script>
-const playlist = require('./controllers/playlist.js');
-
-
-$(function myFunction() {  
-    
-     $.get('/search-track', function(data) {
-    // "Data" is the object we get from the API. See server.js for the function that returns it.
-    console.group('%cResponse from /search-track', 'color: #F037A5; font-size: large');
-    console.log(data);
-    console.groupEnd();
-    
-    // Display the track name
-    var trackName = $('<h3><a href="' + data.external_urls.spotify + '">' + data.name + '</a></h3>');
-    var artistName = $('<h3>' + data.artists[0].name + '</h3>');
-    trackName.appendTo('#search-track-container');
-    artistName.appendTo('#search-track-container');
-    
-    // Display the album art
-    var img = $('<img/>');
-    img.attr('src', data.album.images[0].url);
-    img.appendTo('#search-track-container');
-  });
-
-});
-</script>
-          <button onclick="myFunction()">
+          <a href="/viewsongs/{{../playlist.id}}/viewSong/{{songId}}" class="ui icon button">
          <i class="music icon"></i>
-          </botton>
+          </a>
+        </td>
+        
+        
+                   <td>
+          <a href="/viewsongs/{{../playlist.id}}/viewSong/{{songId}}" class="ui icon button">
+      Spotify
+          </a>
         </td>
         
         <td>
@@ -65,7 +40,3 @@ $(function myFunction() {
     {{/each}}
   </tbody>
 </table>
-
-    <div class="results">
-        <ul id="results"></ul>
-      </div>

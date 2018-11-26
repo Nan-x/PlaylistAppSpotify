@@ -1,4 +1,4 @@
-  'use strict';
+ 'use strict';
 
 const logger = require('../utils/logger');
 const playlistStore = require('../models/playlist-store');
@@ -57,19 +57,33 @@ const playlist = {
    response.render('viewsongs', viewData);
   },
   
-  getSongName(request, response){
-    const playlistId = request.params.id;
-    logger.debug(playlistId);
-    const song = request.params.songid;
-    var songOne;
-    const body =  playlistStore.getPlaylist(playlistId);
+  linkToSpotify(request, response){
+  const playlistId = request.params.id;
+  logger.debug(playlistId);
+  const song = request.params.songid;
+   var songOne;
+   let trackid;
+   const body =  playlistStore.getPlaylist(playlistId);
     body.songs.forEach(function(element){
       if(element.songId == song){
-        songOne = element;}
-      return body.name
+        songOne = element;} 
     });
+    $(function myFunction() {  
     
+    let query = songOne.name;
     
+    $.get('/search?' + $.param({query: query}), function(data) {
+      document.getElementById('results').innerHTML = data.tracks.items.map(track => {
+        return {trackid : track.id.spotify};  
+        console.log(trackid);
+      })
+      });
+    });
+     const viewData = {
+     spotifyId : trackid
+     
+     };
+      response.render('viewsongs', viewData);  
   }
 };
 
