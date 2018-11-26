@@ -17,8 +17,9 @@ router.get('/playlist/:id', playlist.index);
 router.get('/playlist/:id/deletesong/:songid', playlist.deleteSong);
 router.post('/playlist/:id/addsong', playlist.addSong);
 
-router.get('/playlist/:id/viewSong/:songId', playlist.viewSong);
+router.get('/viewsongs/:id/viewSong/:songid', playlist.viewSong);
 
-router.get('https://api.spotify.com/v1/tracks/{id}' , playlist
+router.get('https://api.spotify.com/v1/tracks/{id}');
+
 
 module.exports = router;

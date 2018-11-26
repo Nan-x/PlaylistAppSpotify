@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const playlist = require('./controllers/playlist.js');
 
+const getsong = require('./models/playlist-store');
+
+
 const app = express();
 app.use(cookieParser());
 const exphbs = require('express-handlebars');
@@ -54,17 +57,10 @@ spotifyApi.clientCredentialsGrant()
 
 
 app.get("/search", function (request, response) {
-  let query = request.query.query;
+  let query = request.getsong.getSongName();
   
-  if(request.query.context) {
-    if(request.query.context == 'artist') {
-      query = 'artist:' + request.query.query;
-    }
-    if(request.query.context == 'track') {
-      query = 'track:' + request.query.query;
-    }
-  }
-  spotifyApi.searchTracks(query)
+
+  spotifyApi.searchTracks(query, {limit: 1})
   .then(function(data) {
     response.send(data.body);
   }, function(err) {
@@ -73,9 +69,10 @@ app.get("/search", function (request, response) {
 });
 
 app.get('/search-track', function (request, response) {
+  let song = getsong.getSongName();
   
   // Search for a track!
-  spotifyApi.searchTracks('track: dancing queen', {limit: 1})
+  spotifyApi.searchTracks('track : ' + song, {limit: 1})
     .then(function(data) {
     
       // Send the first (only) track object

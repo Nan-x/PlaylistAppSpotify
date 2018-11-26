@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 const logger = require('../utils/logger');
 const playlistStore = require('../models/playlist-store');
@@ -38,18 +38,26 @@ const playlist = {
   
   viewSong(request, response){
     const playlistId = request.params.id;
-    const songId = request.params.songId;
-    logger.debug("SongID = " , songId);
+    logger.debug(playlistId);
+    const song = request.params.songid;
+    var songOne;
+   const body =  playlistStore.getPlaylist(playlistId);
+    body.songs.forEach(function(element){
+      if(element.songId == song){
+        songOne = element;}
+    });
+    logger.debug(body);
+    logger.debug("SongID = " , song);
     const viewData = {
-    
-      song : playlistStore.viewSong(songId)
-    
-    }
-   response.render('/playlist/', viewData);
-  }
-  
-
+     title : songOne.name,
+     body : songOne
+    };
+   response.render('viewsongs', viewData);
+  },
 };
+
+
+    
 
 
 module.exports = playlist;

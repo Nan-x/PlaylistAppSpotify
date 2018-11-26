@@ -7,7 +7,6 @@ const playlistStore = {
 
   store: new JsonStore('./models/playlist-store.json', { playlistCollection: [] }),
   collection: 'playlistCollection',
-  song :'playlistCollection.songs',
 
   getAllPlaylists() {
     return this.store.findAll(this.collection);
@@ -46,9 +45,19 @@ const playlistStore = {
     this.store.save();
   },
   
-  viewSong(id, songId) {
-    return this.store.findOneBy(this.collection.songs, { id : songId } );
-  }
+  getSong(id, songId) {
+    const playlist = this.getPlaylist(id);
+    return this.store.findOneBy(this.collection.songs, { id : id, songId : songId } );
+  },
+  
+  getSongName(id, songId){
+   const playlist = this.getPlaylist(id);
+    return this.store.findOneBy(this.collection.songs.name, { id : id, songId : songId } );
+}
+  
 };
+
+
+
 
 module.exports = playlistStore;

@@ -1,18 +1,18 @@
-const getsong = require('./models/playlist-store');
-
 $(function() {  
- 
+  $('form').submit(function(event) {
+    event.preventDefault();
     
-    let query = getsong.getSongName();
+    let query = $('input').val();
+    let context = $('input[name="context"]:checked').val();
     
-    $.get('/search?' + $.param({query: query}), function(data) {
+    $.get('/search?' + $.param({context: context, query: query}), function(data) {
       $('input[type="text"]').val('');
       $('input').focus();
       
       document.getElementById('results').innerHTML = data.tracks.items.map(track => {
         return `<a ${track.id.spotify}">${track.id}  </a>`;
       }).join('\n');
-
+    });
   });
   
       

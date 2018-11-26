@@ -10,7 +10,9 @@
 "name": "Promises",
 "artist": "Calvin Harris",
 "genre": "Dance",
+ "coverart" : "https://cdn.glitch.com/d4683b90-7987-4984-aeda-b0853f464745%2FFB_IMG_1534191575511-696x696.jpg?1542452363342",         
 "duration": 45
+          
 },
 {
 "songId" : "15",
